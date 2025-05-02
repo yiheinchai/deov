@@ -1,7 +1,7 @@
 # **Directed Evolution Oncolytic Viruses (DE-OV)** 
 
 The core principle is harnessing controlled, accelerated evolution *within the patient* to continuously generate viral variants that overcome tumor resistance and immune evasion faster than the cancer evolves defenses.
-
+![ezgif-47983c15dd892d](https://github.com/user-attachments/assets/d7174dce-a836-43df-bc03-8c67dcf99042)
 ## **I. The Oncolytic Virus (OV) Backbone: The Starting Chassis**
 
 1.  **Virus Selection:** The choice of parental virus is critical. Common candidates include:
