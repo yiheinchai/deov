@@ -74,3 +74,25 @@ The Directed Evolution Oncolytic Virus concept is technically demanding but repr
 ![simulation_plot_agg_0 10](https://github.com/user-attachments/assets/df6dbcaa-d871-4f99-8fe8-cc307c25ca16)
 
 ![ezgif-47983c15dd892d](https://github.com/user-attachments/assets/d7174dce-a836-43df-bc03-8c67dcf99042)
+
+
+### Explaining tropism in simulations
+Think of it like a **key and lock system**:
+
+1.  **The Lock (Cancer Cell):** Each `CancerCell` object has an attribute called `receptor_type`. In our simulation, this can be 'ReceptorA', 'ReceptorB', or 'ReceptorC'. This represents a specific molecule or structure on the surface of that particular cancer cell. This is the "lock."
+2.  **The Key (Virus Particle):** Each `VirusParticle` object has a `genotype`, which is a dictionary. Inside this dictionary, there's a key called `'tropism'`. The value associated with `'tropism'` (e.g., 'ReceptorA', 'ReceptorB', or 'ReceptorC') represents the specific type of "lock" that this particular virus particle is designed to fit. This is the "key."
+3.  **Infection Attempt:** When a virus particle encounters a cancer cell, the simulation checks if the virus's "key" matches the cell's "lock." Specifically, the `CancerCell.attempt_infection` method checks if `virus.genotype['tropism'] == self.receptor_type`.
+    *   **Match:** If the virus's `tropism` matches the cell's `receptor_type`, the virus has a high base probability (`VIRAL_INFECTION_PROB_BASE`) of successfully infecting the cell (modified by the cell's general antiviral resistance).
+    *   **Mismatch:** If they don't match, the infection probability is essentially zero. The virus cannot effectively "unlock" and enter the cell.
+
+**Why Tropism is Crucial in this Simulation (The Evolutionary Arms Race):**
+
+*   **Cancer Resistance:** Cancer cells can evolve resistance by changing their surface receptors. In the simulation, this happens randomly based on the `effective_cancer_mutation_rate_resistance`. A cell might switch from expressing 'ReceptorA' to 'ReceptorB'. Viruses with `tropism` 'ReceptorA' can no longer effectively infect this mutated cell. If many cells make this switch, the original virus population becomes ineffective.
+*   **Viral Adaptation (Directed Evolution):** This is where the DE-OV concept comes in. The virus isn't static. During replication (in the `CancerCell.lyse` method), there's a high probability (`MUTATION_RATE_TROPISM`) that the *new* virus particles produced will have a *different* `tropism` than their parent. They might randomly switch from targeting 'ReceptorA' to 'ReceptorB' or 'ReceptorC'.
+*   **Selection Pressure:** If the cancer population shifts to predominantly expressing 'ReceptorB', only those newly mutated viruses that happen to have gained the 'ReceptorB' `tropism` will be able to infect successfully and replicate massively. Viruses still targeting 'ReceptorA' or 'ReceptorC' will fail to propagate effectively. This drives the evolution of the virus population to match the current cancer population.
+
+**In the Plots:**
+
+The middle plot, "Virus Tropism Evolution (Frequency)," directly visualizes this dynamic. You see the percentage of the *total virus population* that has a specific `tropism` ('ReceptorA', 'ReceptorB', or 'ReceptorC') changing over time. This reflects the ongoing evolutionary battle – the virus population shifting its targeting strategy (changing its "keys") in response to the cancer cells changing their surface "locks."
+
+In short, **tropism in this simulation is the specific receptor type a virus targets, determining which cancer cells it can effectively infect.** The ability of the virus to rapidly mutate its tropism is essential for it to adapt and overcome cancer cell resistance based on receptor changes.
