@@ -68,3 +68,9 @@ DE-OV approach aims for second-order *outcomes* by:
 ## **Conclusion:**
 
 The Directed Evolution Oncolytic Virus concept is technically demanding but represents a plausible biological implementation of a learning, adaptive therapeutic. It leverages principles of directed evolution, synthetic biology (dCas9-AID, targeted recombination), and virology. Its success hinges on precisely controlling the evolutionary engine, balancing viral persistence with safety, navigating the complex interplay with the host immune system, and achieving an adaptation speed that consistently outpaces tumor evolution. This approach shifts the paradigm from static or slowly adapting therapies to one where the therapeutic agent itself rapidly evolves *in situ* to overcome the dynamic challenge of cancer.
+
+
+## Simulations
+![simulation_plot_agg_0 10](https://github.com/user-attachments/assets/df6dbcaa-d871-4f99-8fe8-cc307c25ca16)
+
+![ezgif-47983c15dd892d](https://github.com/user-attachments/assets/d7174dce-a836-43df-bc03-8c67dcf99042)
